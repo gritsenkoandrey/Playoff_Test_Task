@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f45bc9d3553b4b24b02ec9935e6275be, type: 3}
+  m_Name: UIData
+  m_EditorClassIdentifier: 
+  MainUIControllerPrefab: {fileID: 3455478367077913802, guid: a68a8bba5bed38f46bc83c3b98490c9c, type: 3}
+  LevelPopupControllerPrefab: {fileID: 2451885093613683206, guid: 76d6af4726696e642b93212659cacc5f, type: 3}
+  RewardItemViewPrefab: {fileID: 7278129235009583913, guid: 8ee3cdabe5ae93d4a8c94424ef1db1b1, type: 3}
