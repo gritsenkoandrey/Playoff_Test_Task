@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Game.Scripts.Models;
+using Game.Scripts.Utils;
 using Game.Scripts.Utils.Extensions;
 using UniRx;
 using UnityEngine;
@@ -9,49 +10,47 @@ namespace Game.Scripts.Services.LevelService
     public sealed class LevelService : ILevelService
     {
         private readonly string[] _rewardTypes;
-        private readonly LevelModel _levelModel;
+        private readonly MinMax _minMaxReward;
+        private readonly MinMax _minMaxCount;
 
         public LevelService(int level)
         {
-            Level = new ReactiveProperty<int>(level);
-            
             _rewardTypes = new []
             {
                 "Gold", "Gem", "Potion", "Key", "Scroll"
             };
-
-            _levelModel = new LevelModel
+            
+            LevelModel = new ReactiveProperty<LevelModel>(new LevelModel
             {
                 Number = level,
                 Rewards = new List<RewardModel>(_rewardTypes.Length)
-            };
+            });
+
+            _minMaxReward = new MinMax(1, _rewardTypes.Length + 1);
+            _minMaxCount = new MinMax(1, 100);
         }
 
-        public IReactiveProperty<int> Level { get; }
+        public ReactiveProperty<LevelModel> LevelModel { get; }
 
-        LevelModel ILevelService.GenerateLevel()
+        void ILevelService.GenerateLevel()
         {
-            int count = GenerateRandom(1, _rewardTypes.Length + 1);
+            int count = Random.Range(_minMaxReward.Min, _minMaxReward.Max);
 
-            _levelModel.Number++;
-            _levelModel.Rewards.Clear();
             _rewardTypes.Shuffle();
-            
+
+            LevelModel.Value.Number++;
+            LevelModel.Value.Rewards.Clear();
+
             for (int i = 0; i < count; i++)
             {
-                _levelModel.Rewards.Add(GenerateReward(i));
+                LevelModel.Value.Rewards.Add(GenerateReward(i));
             }
-
-            return _levelModel;
         }
 
         void ILevelService.UpdateLevel() => 
-            Level.Value = _levelModel.Number;
+            LevelModel.SetValueAndForceNotify(LevelModel.Value);
 
         private RewardModel GenerateReward(int index) => 
-            new(_rewardTypes[index], GenerateRandom(1, 100));
-
-        private static int GenerateRandom(int min, int max) => 
-            Random.Range(min, max);
+            new(_rewardTypes[index], Random.Range(_minMaxCount.Min, _minMaxCount.Max));
     }
 }

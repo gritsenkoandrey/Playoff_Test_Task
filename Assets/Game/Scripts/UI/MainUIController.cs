@@ -30,28 +30,29 @@ namespace Game.Scripts.UI
         {
             _updateButton
                 .OnClickAsObservable()
-                .Subscribe(ShowPopup)
+                .Subscribe(CreatePopup)
                 .AddTo(_compositeDisposable);
-            
-            _levelService.Level
-                .Subscribe(UpdateTextLevel)
+
+            _levelService.LevelModel
+                .Select(model => model.Number)
+                .Subscribe(UpdateView)
                 .AddTo(_compositeDisposable);
         }
 
         private void OnDisable()
         {
             _compositeDisposable.Clear();
-            _compositeDisposable.Dispose();
         }
 
-        private void ShowPopup(Unit _)
+        private void CreatePopup(Unit _)
         {
-            _screenFactory.CreateLevelPopupController(_levelService.GenerateLevel());
+            _levelService.GenerateLevel();
+            _screenFactory.CreateLevelPopupController();
         }
 
-        private void UpdateTextLevel(int level)
+        private void UpdateView(int number)
         {
-            _levelText.text = string.Format(Format.Level, level.ToString());
+            _levelText.text = string.Format(Format.Level, number.ToString());
         }
     }
 }

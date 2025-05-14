@@ -7,7 +7,7 @@ namespace Game.Scripts.Services.Factories.ScreenFactory
     public interface IScreenFactory
     {
         MainUIController CreateMainUiController();
-        LevelPopupController CreateLevelPopupController(LevelModel levelModel);
+        LevelPopupController CreateLevelPopupController();
         RewardItemView CreateRewardItemView(RewardModel rewardModel, Transform root);
     }
 }

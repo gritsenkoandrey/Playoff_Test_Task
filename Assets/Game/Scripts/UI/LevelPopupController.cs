@@ -33,9 +33,11 @@ namespace Game.Scripts.UI
                 .First()
                 .Subscribe(Close)
                 .AddTo(this);
+            
+            UpdateView(_levelService.LevelModel.Value);
         }
 
-        public void Init(LevelModel levelModel)
+        private void UpdateView(LevelModel levelModel)
         {
             _levelText.text = string.Format(Format.Level, levelModel.Number.ToString());
 

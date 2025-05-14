@@ -21,19 +21,11 @@ namespace Game.Scripts.Services.Factories.ScreenFactory
             _uiRoot = uiRoot;
         }
         
-        MainUIController IScreenFactory.CreateMainUiController()
-        {
-            return _objectResolver.Instantiate(_staticDataService.GetUIData().MainUIControllerPrefab, _uiRoot.MainRoot);
-        }
+        MainUIController IScreenFactory.CreateMainUiController() => 
+            _objectResolver.Instantiate(_staticDataService.GetUIData().MainUIControllerPrefab, _uiRoot.MainRoot);
 
-        LevelPopupController IScreenFactory.CreateLevelPopupController(LevelModel levelModel)
-        {
-            LevelPopupController popup = _objectResolver.Instantiate(_staticDataService.GetUIData().LevelPopupControllerPrefab, _uiRoot.PopupRoot);
-            
-            popup.Init(levelModel);
-
-            return popup;
-        }
+        LevelPopupController IScreenFactory.CreateLevelPopupController() => 
+            _objectResolver.Instantiate(_staticDataService.GetUIData().LevelPopupControllerPrefab, _uiRoot.PopupRoot);
 
         RewardItemView IScreenFactory.CreateRewardItemView(RewardModel rewardModel, Transform root)
         {
