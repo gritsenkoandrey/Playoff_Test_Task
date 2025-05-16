@@ -48,5 +48,4 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
-  _startLevel: 1
   _uiRoot: {fileID: 4774198661950374906, guid: d82df7133edbfc147b029d1f4a5e5cc1, type: 3}

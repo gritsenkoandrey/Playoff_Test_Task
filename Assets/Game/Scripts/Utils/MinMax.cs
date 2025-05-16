@@ -1,9 +1,12 @@
-﻿namespace Game.Scripts.Utils
+﻿using System;
+
+namespace Game.Scripts.Utils
 {
-    public readonly struct MinMax
+    [Serializable]
+    public struct MinMax
     {
-        public readonly int Min;
-        public readonly int Max;
+        public int Min;
+        public int Max;
 
         public MinMax(int min, int max)
         {

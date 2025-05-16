@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Services.SceneLoadService;
+﻿using Game.Scripts.Services.LevelService;
+using Game.Scripts.Services.SceneLoadService;
 using Game.Scripts.Services.StaticDataService;
 using VContainer;
 
@@ -10,6 +11,7 @@ namespace Game.Scripts.Services.GameStateMachine.States
         
         private ISceneLoadService _sceneLoadService;
         private IStaticDataService _staticDataService;
+        private ILevelService _levelService;
 
         public LoadState(IGameStateMachine gameStateMachine)
         {
@@ -17,15 +19,17 @@ namespace Game.Scripts.Services.GameStateMachine.States
         }
 
         [Inject]
-        private void Construct(ISceneLoadService sceneLoadService, IStaticDataService staticDataService)
+        private void Construct(ISceneLoadService sceneLoadService, IStaticDataService staticDataService, ILevelService levelService)
         {
             _sceneLoadService = sceneLoadService;
             _staticDataService = staticDataService;
+            _levelService = levelService;
         }
 
         void IEnterLoadState<string>.Enter(string sceneName)
         {
             _staticDataService.Load();
+            _levelService.Init();
             
             _sceneLoadService.Load(sceneName, Next);
         }

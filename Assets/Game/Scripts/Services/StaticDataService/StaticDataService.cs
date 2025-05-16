@@ -8,6 +8,8 @@ namespace Game.Scripts.Services.StaticDataService
         private readonly IAssetService _assetService;
 
         private UIData _uiData;
+        private RewardData _rewardData;
+        private LevelData _levelData;
 
         public StaticDataService(IAssetService assetService)
         {
@@ -17,8 +19,14 @@ namespace Game.Scripts.Services.StaticDataService
         void IStaticDataService.Load()
         {
             _uiData = _assetService.LoadFromResources<UIData>(AssetAddress.UIDataPath);
+            _rewardData = _assetService.LoadFromResources<RewardData>(AssetAddress.RewardDataPath);
+            _levelData = _assetService.LoadFromResources<LevelData>(AssetAddress.LevelDataPath);
         }
 
         UIData IStaticDataService.GetUIData() => _uiData;
+        
+        RewardData IStaticDataService.GetRewardData() => _rewardData;
+        
+        LevelData IStaticDataService.GetLevelData() => _levelData;
     }
 }

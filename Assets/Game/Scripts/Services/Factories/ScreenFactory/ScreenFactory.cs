@@ -1,7 +1,6 @@
 ﻿using Game.Scripts.Models;
 using Game.Scripts.Services.StaticDataService;
 using Game.Scripts.UI;
-using Game.Scripts.Utils;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -30,11 +29,7 @@ namespace Game.Scripts.Services.Factories.ScreenFactory
         RewardItemView IScreenFactory.CreateRewardItemView(RewardModel rewardModel, Transform root)
         {
             RewardItemView rewardItemView = _objectResolver.Instantiate(_staticDataService.GetUIData().RewardItemViewPrefab, root);
-
-            string reward = string.Format(Format.Reward, rewardModel.Type, rewardModel.Count.ToString());
-
-            rewardItemView.Init(reward);
-
+            rewardItemView.Init(rewardModel.ToString());
             return rewardItemView;
         }
     }

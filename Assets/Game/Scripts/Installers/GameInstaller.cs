@@ -15,7 +15,6 @@ namespace Game.Scripts.Installers
     public sealed class GameInstaller : LifetimeScope
     {
         [SerializeField] private UIRoot _uiRoot;
-        [SerializeField] private int _level = 1;
 
         protected override void Awake()
         {
@@ -27,12 +26,12 @@ namespace Game.Scripts.Installers
         protected override void Configure(IContainerBuilder builder)
         {
             base.Configure(builder);
-
+            
             builder.RegisterComponentInNewPrefab(_uiRoot, Lifetime.Singleton).DontDestroyOnLoad();
             
             builder.Register<IAssetService, AssetService>(Lifetime.Singleton);
             builder.Register<IStaticDataService, StaticDataService>(Lifetime.Singleton);
-            builder.Register<ILevelService, LevelService>(Lifetime.Singleton).WithParameter(_level);
+            builder.Register<ILevelService, LevelService>(Lifetime.Singleton);
             builder.Register<ISceneLoadService, SceneLoadService>(Lifetime.Singleton);
             builder.Register<IStateMachineFactory, StateMachineFactory>(Lifetime.Singleton);
             builder.Register<IScreenFactory, ScreenFactory>(Lifetime.Singleton);

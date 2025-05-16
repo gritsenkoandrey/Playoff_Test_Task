@@ -6,5 +6,7 @@ namespace Game.Scripts.Services.StaticDataService
     {
         void Load();
         UIData GetUIData();
+        RewardData GetRewardData();
+        LevelData GetLevelData();
     }
 }

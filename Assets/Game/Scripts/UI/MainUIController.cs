@@ -1,6 +1,6 @@
-﻿using Game.Scripts.Services.Factories.ScreenFactory;
+﻿using Game.Scripts.Models;
+using Game.Scripts.Services.Factories.ScreenFactory;
 using Game.Scripts.Services.LevelService;
-using Game.Scripts.Utils;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -16,7 +16,7 @@ namespace Game.Scripts.UI
 
         private IScreenFactory _screenFactory;
         private ILevelService _levelService;
-
+        
         private readonly CompositeDisposable _compositeDisposable = new ();
 
         [Inject]
@@ -34,7 +34,6 @@ namespace Game.Scripts.UI
                 .AddTo(_compositeDisposable);
 
             _levelService.LevelModel
-                .Select(model => model.Number)
                 .Subscribe(UpdateView)
                 .AddTo(_compositeDisposable);
         }
@@ -50,9 +49,9 @@ namespace Game.Scripts.UI
             _screenFactory.CreateLevelPopupController();
         }
 
-        private void UpdateView(int number)
+        private void UpdateView(LevelModel levelModel)
         {
-            _levelText.text = string.Format(Format.Level, number.ToString());
+            _levelText.text = levelModel.ToString();
         }
     }
 }

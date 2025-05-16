@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Game.Scripts.Models;
+using Game.Scripts.Services.StaticDataService;
+using Game.Scripts.Services.StaticDataService.Data;
 using Game.Scripts.Utils;
 using Game.Scripts.Utils.Extensions;
 using UniRx;
@@ -9,32 +12,37 @@ namespace Game.Scripts.Services.LevelService
 {
     public sealed class LevelService : ILevelService
     {
-        private readonly string[] _rewardTypes;
-        private readonly MinMax _minMaxReward;
-        private readonly MinMax _minMaxCount;
+        private readonly IStaticDataService _staticDataService;
+        
+        private string[] _rewardTypes;
+        private MinMax _minMaxReward;
+        private MinMax _minMaxCurrency;
 
-        public LevelService(int level)
+        public LevelService(IStaticDataService staticDataService)
         {
-            _rewardTypes = new []
-            {
-                "Gold", "Gem", "Potion", "Key", "Scroll"
-            };
-            
-            LevelModel = new ReactiveProperty<LevelModel>(new LevelModel
-            {
-                Number = level,
-                Rewards = new List<RewardModel>(_rewardTypes.Length)
-            });
-
-            _minMaxReward = new MinMax(1, _rewardTypes.Length + 1);
-            _minMaxCount = new MinMax(1, 100);
+            _staticDataService = staticDataService;
         }
 
-        public ReactiveProperty<LevelModel> LevelModel { get; }
+        public ReactiveProperty<LevelModel> LevelModel { get; private set; }
+
+        void ILevelService.Init()
+        {
+            RewardData rewardData = _staticDataService.GetRewardData();
+            LevelData levelData = _staticDataService.GetLevelData();
+
+            _rewardTypes = rewardData.Rewards.ToArray();
+            _minMaxCurrency = rewardData.MinMaxCurrency;
+            _minMaxReward = new MinMax(1, _rewardTypes.Length);
+            
+            LevelModel levelModel = new LevelModel(levelData.StartLevel, 
+                new List<RewardModel>(_rewardTypes.Length));
+            
+            LevelModel = new ReactiveProperty<LevelModel>(levelModel);
+        }
 
         void ILevelService.GenerateLevel()
         {
-            int count = Random.Range(_minMaxReward.Min, _minMaxReward.Max);
+            int count = RangeInclusive(_minMaxReward.Min, _minMaxReward.Max);
 
             _rewardTypes.Shuffle();
 
@@ -51,6 +59,9 @@ namespace Game.Scripts.Services.LevelService
             LevelModel.SetValueAndForceNotify(LevelModel.Value);
 
         private RewardModel GenerateReward(int index) => 
-            new(_rewardTypes[index], Random.Range(_minMaxCount.Min, _minMaxCount.Max));
+            new(_rewardTypes[index], RangeInclusive(_minMaxCurrency.Min, _minMaxCurrency.Max));
+        
+        private static int RangeInclusive(int min, int max) => 
+            Random.Range(min, max + 1);
     }
 }
