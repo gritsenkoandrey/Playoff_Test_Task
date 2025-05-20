@@ -14,6 +14,6 @@ namespace Runtime.Models
             Rewards = rewards;
         }
 
-        public override string ToString() => string.Format(Format.Level, Number.ToString());
+        public override string ToString() => string.Format(Constants.Format.LEVEL, Number.ToString());
     }
 }

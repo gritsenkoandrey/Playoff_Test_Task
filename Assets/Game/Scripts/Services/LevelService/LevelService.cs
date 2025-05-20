@@ -34,7 +34,7 @@ namespace Runtime.Services.LevelService
             _minMaxCurrency = rewardData.MinMaxCurrency;
             _minMaxReward = new MinMax(1, _rewardTypes.Length);
             
-            LevelModel levelModel = new LevelModel(levelData.StartLevel, 
+            LevelModel levelModel = new (levelData.StartLevel, 
                 new List<RewardModel>(_rewardTypes.Length));
             
             LevelModel = new ReactiveProperty<LevelModel>(levelModel);

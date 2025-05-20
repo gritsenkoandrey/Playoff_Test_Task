@@ -7,9 +7,6 @@ namespace Runtime.Utils.Editor
     [InitializeOnLoad]
     public static class AutoLoadScene
     {
-        private const string ScenePath = "Assets/Scenes/Bootstrap.unity";
-        private const string Key = "auto_load_scene_key";
-
         static AutoLoadScene()
         {
             EditorApplication.update += OnLoadScene;
@@ -20,18 +17,18 @@ namespace Runtime.Utils.Editor
         {
             EditorApplication.update -= OnLoadScene;
 
-            if (EditorPrefs.GetBool(Key))
+            if (EditorPrefs.GetBool(Constants.EditorAutoLoadScene.KEY))
             {
                 return;
             }
             
-            EditorPrefs.SetBool(Key, true);
+            EditorPrefs.SetBool(Constants.EditorAutoLoadScene.KEY, true);
 
-            if (SceneManager.GetActiveScene().path != ScenePath)
+            if (SceneManager.GetActiveScene().path != Constants.EditorAutoLoadScene.SCENE_PATH)
             {
                 if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
                 {
-                    EditorSceneManager.OpenScene(ScenePath);
+                    EditorSceneManager.OpenScene(Constants.EditorAutoLoadScene.SCENE_PATH);
                 }
             }
         }
@@ -40,7 +37,7 @@ namespace Runtime.Utils.Editor
         {
             EditorApplication.quitting -= OnEditorQuit;
             
-            EditorPrefs.DeleteKey(Key);
+            EditorPrefs.DeleteKey(Constants.EditorAutoLoadScene.KEY);
         }
     }
 }

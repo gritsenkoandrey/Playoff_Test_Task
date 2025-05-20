@@ -1,5 +1,6 @@
 ﻿using Runtime.Services.AssetService;
 using Runtime.Services.StaticDataService.Data;
+using Runtime.Utils;
 
 namespace Runtime.Services.StaticDataService
 {
@@ -18,9 +19,9 @@ namespace Runtime.Services.StaticDataService
         
         void IStaticDataService.Load()
         {
-            _uiData = _assetService.LoadFromResources<UIData>(AssetAddress.UI_DATA_PATH);
-            _rewardData = _assetService.LoadFromResources<RewardData>(AssetAddress.REWARD_DATA_PATH);
-            _levelData = _assetService.LoadFromResources<LevelData>(AssetAddress.LEVEL_DATA_PATH);
+            _uiData = _assetService.LoadFromResources<UIData>(Constants.AssetAddress.UI_DATA_PATH);
+            _rewardData = _assetService.LoadFromResources<RewardData>(Constants.AssetAddress.REWARD_DATA_PATH);
+            _levelData = _assetService.LoadFromResources<LevelData>(Constants.AssetAddress.LEVEL_DATA_PATH);
         }
 
         UIData IStaticDataService.GetUIData() => _uiData;

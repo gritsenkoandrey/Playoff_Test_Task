@@ -1,4 +1,5 @@
 ﻿using Runtime.Services.SceneLoadService;
+using Runtime.Utils;
 using VContainer;
 
 namespace Runtime.Services.GameStateMachine.States
@@ -22,13 +23,13 @@ namespace Runtime.Services.GameStateMachine.States
 
         void IEnterState.Enter()
         {
-            _sceneLoadService.Load(SceneName.BOOTSTRAP, Next);
+            _sceneLoadService.Load(Constants.SceneName.BOOTSTRAP, Next);
         }
 
         void IExitState.Exit()
         {
         }
 
-        private void Next() => _gameStateMachine.Enter<LoadState, string>(SceneName.GAME);
+        private void Next() => _gameStateMachine.Enter<LoadState, string>(Constants.SceneName.GAME);
     }
 }

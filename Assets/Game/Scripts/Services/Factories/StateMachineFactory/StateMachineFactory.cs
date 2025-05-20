@@ -1,5 +1,4 @@
 ﻿using Runtime.Services.GameStateMachine;
-using Runtime.Utils.Extensions;
 using VContainer;
 
 namespace Runtime.Services.Factories.StateMachineFactory
@@ -15,8 +14,13 @@ namespace Runtime.Services.Factories.StateMachineFactory
         
         IGameStateMachine IStateMachineFactory.CreateGameStateMachine()
         {
-            GameStateMachine.GameStateMachine gameStateMachine = new GameStateMachine.GameStateMachine();
-            gameStateMachine.States.Values.Foreach(_objectResolver.Inject);
+            GameStateMachine.GameStateMachine gameStateMachine = new ();
+
+            foreach (IExitState state in gameStateMachine.States.Values)
+            {
+                _objectResolver.Inject(state);
+            }
+            
             return gameStateMachine;
         }
     }

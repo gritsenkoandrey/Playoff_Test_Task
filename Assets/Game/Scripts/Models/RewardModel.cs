@@ -13,6 +13,6 @@ namespace Runtime.Models
             Count = count;
         }
 
-        public override string ToString() => string.Format(Format.Reward, Type, Count.ToString());
+        public override string ToString() => string.Format(Constants.Format.REWARD, Type, Count.ToString());
     }
 }
