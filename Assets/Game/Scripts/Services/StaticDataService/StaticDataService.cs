@@ -1,7 +1,7 @@
-﻿using Game.Scripts.Services.AssetService;
-using Game.Scripts.Services.StaticDataService.Data;
+﻿using Runtime.Services.AssetService;
+using Runtime.Services.StaticDataService.Data;
 
-namespace Game.Scripts.Services.StaticDataService
+namespace Runtime.Services.StaticDataService
 {
     public sealed class StaticDataService : IStaticDataService
     {

@@ -1,8 +1,8 @@
-﻿using Game.Scripts.Models;
-using Game.Scripts.UI;
+﻿using Runtime.Models;
+using Runtime.UI;
 using UnityEngine;
 
-namespace Game.Scripts.Services.Factories.ScreenFactory
+namespace Runtime.Services.Factories.ScreenFactory
 {
     public interface IScreenFactory
     {

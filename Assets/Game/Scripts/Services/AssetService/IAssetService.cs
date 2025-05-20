@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game.Scripts.Services.AssetService
+namespace Runtime.Services.AssetService
 {
     public interface IAssetService
     {

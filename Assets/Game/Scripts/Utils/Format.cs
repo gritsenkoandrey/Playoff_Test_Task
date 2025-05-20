@@ -1,4 +1,4 @@
-﻿namespace Game.Scripts.Utils
+﻿namespace Runtime.Utils
 {
     public static class Format
     {

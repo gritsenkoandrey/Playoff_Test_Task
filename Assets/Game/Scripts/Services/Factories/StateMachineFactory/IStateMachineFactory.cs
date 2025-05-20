@@ -1,6 +1,6 @@
-﻿using Game.Scripts.Services.GameStateMachine;
+﻿using Runtime.Services.GameStateMachine;
 
-namespace Game.Scripts.Services.Factories.StateMachineFactory
+namespace Runtime.Services.Factories.StateMachineFactory
 {
     public interface IStateMachineFactory
     {

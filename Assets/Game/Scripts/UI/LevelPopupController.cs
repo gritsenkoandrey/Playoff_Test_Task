@@ -1,13 +1,13 @@
-﻿using Game.Scripts.Models;
-using Game.Scripts.Services.Factories.ScreenFactory;
-using Game.Scripts.Services.LevelService;
+﻿using Runtime.Models;
+using Runtime.Services.Factories.ScreenFactory;
+using Runtime.Services.LevelService;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
 
-namespace Game.Scripts.UI
+namespace Runtime.UI
 {
     public sealed class LevelPopupController : MonoBehaviour
     {

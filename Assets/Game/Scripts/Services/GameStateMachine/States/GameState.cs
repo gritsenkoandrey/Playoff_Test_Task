@@ -1,7 +1,7 @@
-﻿using Game.Scripts.Services.Factories.ScreenFactory;
+﻿using Runtime.Services.Factories.ScreenFactory;
 using VContainer;
 
-namespace Game.Scripts.Services.GameStateMachine.States
+namespace Runtime.Services.GameStateMachine.States
 {
     public sealed class GameState : IEnterState
     {

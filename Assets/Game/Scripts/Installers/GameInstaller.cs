@@ -1,25 +1,28 @@
-using Game.Scripts.Services.AssetService;
-using Game.Scripts.Services.Factories.ScreenFactory;
-using Game.Scripts.Services.Factories.StateMachineFactory;
-using Game.Scripts.Services.LevelService;
-using Game.Scripts.Services.SceneLoadService;
-using Game.Scripts.Services.StaticDataService;
-using Game.Scripts.UI;
+using Runtime.Services.AssetService;
+using Runtime.Services.CoroutineService;
+using Runtime.Services.Factories.ScreenFactory;
+using Runtime.Services.Factories.StateMachineFactory;
+using Runtime.Services.LevelService;
+using Runtime.Services.SceneLoadService;
+using Runtime.Services.StaticDataService;
+using Runtime.UI;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace Game.Scripts.Installers
+namespace Runtime.Installers
 {
     public sealed class GameInstaller : LifetimeScope
     {
         [SerializeField] private UIRoot _uiRoot;
+        [SerializeField] private CoroutineService _coroutineService;
 
         protected override void Configure(IContainerBuilder builder)
         {
             base.Configure(builder);
             
             builder.RegisterComponentInNewPrefab(_uiRoot, Lifetime.Singleton).DontDestroyOnLoad();
+            builder.RegisterComponentInNewPrefab(_coroutineService, Lifetime.Singleton).DontDestroyOnLoad().As<ICoroutineService>();
             
             builder.Register<IAssetService, AssetService>(Lifetime.Singleton);
             builder.Register<IStaticDataService, StaticDataService>(Lifetime.Singleton);

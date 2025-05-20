@@ -2,7 +2,7 @@
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
-namespace Game.Scripts.Utils.Editor
+namespace Runtime.Utils.Editor
 {
     [InitializeOnLoad]
     public static class AutoLoadScene

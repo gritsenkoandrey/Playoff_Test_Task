@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Game.Scripts.Services.SceneLoadService
+namespace Runtime.Services.SceneLoadService
 {
     public interface ISceneLoadService
     {

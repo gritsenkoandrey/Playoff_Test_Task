@@ -1,4 +1,4 @@
-﻿namespace Game.Scripts.Services.StaticDataService
+﻿namespace Runtime.Services.StaticDataService
 {
     public static class AssetAddress
     {

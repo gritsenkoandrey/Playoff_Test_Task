@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Game.Scripts.Services.GameStateMachine.States;
+using Runtime.Services.GameStateMachine.States;
 
-namespace Game.Scripts.Services.GameStateMachine
+namespace Runtime.Services.GameStateMachine
 {
     public sealed class GameStateMachine : IGameStateMachine
     {

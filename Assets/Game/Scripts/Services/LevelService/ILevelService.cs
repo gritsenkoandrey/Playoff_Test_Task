@@ -1,7 +1,7 @@
-﻿using Game.Scripts.Models;
+﻿using Runtime.Models;
 using UniRx;
 
-namespace Game.Scripts.Services.LevelService
+namespace Runtime.Services.LevelService
 {
     public interface ILevelService
     {

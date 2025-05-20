@@ -1,9 +1,9 @@
-﻿using Game.Scripts.Services.LevelService;
-using Game.Scripts.Services.SceneLoadService;
-using Game.Scripts.Services.StaticDataService;
+﻿using Runtime.Services.LevelService;
+using Runtime.Services.SceneLoadService;
+using Runtime.Services.StaticDataService;
 using VContainer;
 
-namespace Game.Scripts.Services.GameStateMachine.States
+namespace Runtime.Services.GameStateMachine.States
 {
     public sealed class LoadState : IEnterLoadState<string>
     {

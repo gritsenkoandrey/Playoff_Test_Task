@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Game.Scripts.UI
+namespace Runtime.UI
 {
     public sealed class RewardItemView : MonoBehaviour
     {

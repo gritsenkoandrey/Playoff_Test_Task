@@ -1,34 +1,42 @@
 ﻿using System;
-using System.Threading.Tasks;
+using System.Collections;
+using Runtime.Services.CoroutineService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Game.Scripts.Services.SceneLoadService
+namespace Runtime.Services.SceneLoadService
 {
     public sealed class SceneLoadService : ISceneLoadService
     {
-        void ISceneLoadService.Load(string name, Action onLoaded)
+        private readonly ICoroutineService _coroutineService;
+
+        public SceneLoadService(ICoroutineService coroutineService)
         {
-            _ = LoadScene(name, onLoaded);
+            _coroutineService = coroutineService;
         }
         
-        private async Task LoadScene(string name, Action onLoaded)
+        void ISceneLoadService.Load(string name, Action onComplete)
+        {
+            _coroutineService.StartCoroutine(LoadScene(name, onComplete));
+        }
+
+        private static IEnumerator LoadScene(string name, Action onComplete)
         {
             if (SceneManager.GetActiveScene().name.Equals(name))
             {
-                onLoaded?.Invoke();
+                onComplete?.Invoke();
                 
-                return;
+                yield break;
             }
-
+            
             AsyncOperation handle = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
 
             while (handle.isDone == false)
             {
-                await Task.Yield();
+                yield return null;
             }
             
-            onLoaded?.Invoke();
+            onComplete?.Invoke();
         }
     }
 }

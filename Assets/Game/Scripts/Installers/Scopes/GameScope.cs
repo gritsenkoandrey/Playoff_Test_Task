@@ -1,6 +1,6 @@
 ﻿using VContainer.Unity;
 
-namespace Game.Scripts.Installers.Scopes
+namespace Runtime.Installers.Scopes
 {
     public sealed class GameScope : LifetimeScope
     {

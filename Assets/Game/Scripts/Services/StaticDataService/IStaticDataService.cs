@@ -1,6 +1,6 @@
-﻿using Game.Scripts.Services.StaticDataService.Data;
+﻿using Runtime.Services.StaticDataService.Data;
 
-namespace Game.Scripts.Services.StaticDataService
+namespace Runtime.Services.StaticDataService
 {
     public interface IStaticDataService
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Game.Scripts.Utils;
+using Runtime.Utils;
 
-namespace Game.Scripts.Models
+namespace Runtime.Models
 {
     public sealed class LevelModel
     {

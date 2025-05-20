@@ -1,7 +1,7 @@
-﻿using Game.Scripts.Utils;
+﻿using Runtime.Utils;
 using UnityEngine;
 
-namespace Game.Scripts.Services.StaticDataService.Data
+namespace Runtime.Services.StaticDataService.Data
 {
     [CreateAssetMenu(fileName = nameof(RewardData), menuName = "Configs/Data/" + nameof(RewardData))]
     public sealed class RewardData : ScriptableObject

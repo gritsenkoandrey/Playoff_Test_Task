@@ -1,8 +1,8 @@
-﻿using Game.Scripts.Services.GameStateMachine;
-using Game.Scripts.Utils.Extensions;
+﻿using Runtime.Services.GameStateMachine;
+using Runtime.Utils.Extensions;
 using VContainer;
 
-namespace Game.Scripts.Services.Factories.StateMachineFactory
+namespace Runtime.Services.Factories.StateMachineFactory
 {
     public sealed class StateMachineFactory : IStateMachineFactory
     {

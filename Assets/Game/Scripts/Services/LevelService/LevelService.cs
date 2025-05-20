@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Game.Scripts.Models;
-using Game.Scripts.Services.StaticDataService;
-using Game.Scripts.Services.StaticDataService.Data;
-using Game.Scripts.Utils;
-using Game.Scripts.Utils.Extensions;
+using Runtime.Models;
+using Runtime.Services.StaticDataService;
+using Runtime.Services.StaticDataService.Data;
+using Runtime.Utils;
+using Runtime.Utils.Extensions;
 using UniRx;
 using UnityEngine;
 
-namespace Game.Scripts.Services.LevelService
+namespace Runtime.Services.LevelService
 {
     public sealed class LevelService : ILevelService
     {

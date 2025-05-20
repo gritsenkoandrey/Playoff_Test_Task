@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Game.Scripts.Utils
+namespace Runtime.Utils
 {
     [Serializable]
     public struct MinMax

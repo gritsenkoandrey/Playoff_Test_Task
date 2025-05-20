@@ -1,9 +1,9 @@
-﻿using Game.Scripts.Services.Factories.StateMachineFactory;
-using Game.Scripts.Services.GameStateMachine.States;
+﻿using Runtime.Services.Factories.StateMachineFactory;
+using Runtime.Services.GameStateMachine.States;
 using VContainer;
 using VContainer.Unity;
 
-namespace Game.Scripts.Installers
+namespace Runtime.Installers
 {
     public sealed class EntryPoint : IInitializable
     {

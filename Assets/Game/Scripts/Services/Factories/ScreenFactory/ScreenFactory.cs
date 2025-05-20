@@ -1,11 +1,11 @@
-﻿using Game.Scripts.Models;
-using Game.Scripts.Services.StaticDataService;
-using Game.Scripts.UI;
+﻿using Runtime.Models;
+using Runtime.Services.StaticDataService;
+using Runtime.UI;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace Game.Scripts.Services.Factories.ScreenFactory
+namespace Runtime.Services.Factories.ScreenFactory
 {
     public sealed class ScreenFactory : IScreenFactory
     {
