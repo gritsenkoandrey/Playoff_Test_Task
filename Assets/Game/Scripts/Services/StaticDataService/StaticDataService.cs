@@ -18,9 +18,9 @@ namespace Game.Scripts.Services.StaticDataService
         
         void IStaticDataService.Load()
         {
-            _uiData = _assetService.LoadFromResources<UIData>(AssetAddress.UIDataPath);
-            _rewardData = _assetService.LoadFromResources<RewardData>(AssetAddress.RewardDataPath);
-            _levelData = _assetService.LoadFromResources<LevelData>(AssetAddress.LevelDataPath);
+            _uiData = _assetService.LoadFromResources<UIData>(AssetAddress.UI_DATA_PATH);
+            _rewardData = _assetService.LoadFromResources<RewardData>(AssetAddress.REWARD_DATA_PATH);
+            _levelData = _assetService.LoadFromResources<LevelData>(AssetAddress.LEVEL_DATA_PATH);
         }
 
         UIData IStaticDataService.GetUIData() => _uiData;

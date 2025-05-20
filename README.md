@@ -1,28 +1,25 @@
-## Реализация адаптивного UI с использованием UniRx и DI
+## Adaptive UI Implementation Using UniRx and DI
 ###### Unity 2022.3.30f1
 ###### VContainer 1.16.8
 ###### UniRx 7.1.0
 ## Installers:
-### GameInstaller - регистрирует все сервисы.
+### GameInstaller - Registers all services.
 ## Services:
-### AssetService - логика загрузки ресурсов.
-### ScreenFactory - фабрика для генерации UI элементов.
-### StateMachineFactory - фабрика для создания GameStateMachine.
-### GameStateMachine - стейт машина для переключения состояний игры:
-##### BootstrapState - стартовый стейт игры.
-##### LoadState - в этом стейте идет загрузка ресурсов и загружается Game сцена.
-##### GameState - игровой стейт, в данном стейте загружается MainUIController.
-### LevelService - логика генерация уровня и награды.
-### SceneLoadService - логика загрузки сцен.
-### StaticDataService - сервис который загружает ресурсы и кэширует их.
+### AssetService - Handles resource loading logic.
+### ScreenFactory - A factory for generating UI elements.
+### StateMachineFactory - A factory for creating the GameStateMachine.
+### GameStateMachine - A state machine for switching game states:
+##### BootstrapState - The initial game state.
+##### LoadState - In this state, resources are loaded and the Game scene is loaded.
+##### GameState - The main game state; in this state, the MainUIController is loaded.
+### LevelService - Handles level generation logic and rewards.
+### SceneLoadService - Handles scene loading logic.
+### StaticDataService - Loads and caches resources.
 ## Models:
-### LevelModel - данные уровня, в котором содержится номер уровня и список наград.
-### RewardModel - данные о награде, где содержится вид награды и количество.
+### LevelModel - Contains level data, including the level number and a list of rewards.
+### RewardModel - Contains reward data, including the reward type and amount.
 ## UI:
-### UIRoot - рутовый элемент для всего UI.
-### MainUIController - управление тестом текущего уровня и кнопкой обновления уровня.
-### LevelPopupController - управление окном с новым уровнем и наградами.
-### RewardItemView - отображение награды.
-
-## Мысли:
-##### Для более крупного приложения, нужно расширить GameStateMachine, добавить новые стейты, например PrepareState - который будет загружать данные из сервисов, например аналитических, рекламных и т.д. Добавить ResultState, RestartState, LoadLevelState. Для текущей реализации можно было не добавлять фабрики, а зависимсоти передавать через Scope на Game сцене. Так же можно было не создавать StaticDataService и AssetService, а конфиг напрямую инжектить в GameInstaller. Есть 1 неочевидный момент в LevelService, метод называется UpdateLevel, из-за особенности UniRx, если в ReactiveProperty поместить класс и изменить в нем значение через Value, то подписчикам на эту проперти явно не придет (можно обойти если использовать подписку вида ObservableEveryValueChanged) оповещение до тех пор пока не вызвать ReactiveProperty SetValueAndForceNotify, в реализации R3 я такого не замечал. Вместо UIRoot можно было использовать ScreenService, который управлял бы окнами.
+### UIRoot - The root element for the entire UI.
+### MainUIController - Manages the display of the current level and the refresh level button.
+### LevelPopupController - Manages the popup with the new level and rewards.
+### RewardItemView - Displays the reward.

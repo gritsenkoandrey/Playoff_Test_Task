@@ -22,13 +22,13 @@ namespace Game.Scripts.Services.GameStateMachine.States
 
         void IEnterState.Enter()
         {
-            _sceneLoadService.Load(SceneName.Bootstrap, Next);
+            _sceneLoadService.Load(SceneName.BOOTSTRAP, Next);
         }
 
         void IExitState.Exit()
         {
         }
 
-        private void Next() => _gameStateMachine.Enter<LoadState, string>(SceneName.Game);
+        private void Next() => _gameStateMachine.Enter<LoadState, string>(SceneName.GAME);
     }
 }

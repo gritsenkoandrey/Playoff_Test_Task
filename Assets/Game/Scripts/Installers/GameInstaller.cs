@@ -1,7 +1,6 @@
 using Game.Scripts.Services.AssetService;
 using Game.Scripts.Services.Factories.ScreenFactory;
 using Game.Scripts.Services.Factories.StateMachineFactory;
-using Game.Scripts.Services.GameStateMachine.States;
 using Game.Scripts.Services.LevelService;
 using Game.Scripts.Services.SceneLoadService;
 using Game.Scripts.Services.StaticDataService;
@@ -16,13 +15,6 @@ namespace Game.Scripts.Installers
     {
         [SerializeField] private UIRoot _uiRoot;
 
-        protected override void Awake()
-        {
-            base.Awake();
-            
-            DontDestroyOnLoad(this);
-        }
-
         protected override void Configure(IContainerBuilder builder)
         {
             base.Configure(builder);
@@ -35,13 +27,6 @@ namespace Game.Scripts.Installers
             builder.Register<ISceneLoadService, SceneLoadService>(Lifetime.Singleton);
             builder.Register<IStateMachineFactory, StateMachineFactory>(Lifetime.Singleton);
             builder.Register<IScreenFactory, ScreenFactory>(Lifetime.Singleton);
-
-            builder.RegisterBuildCallback(CreateGameStateMachine);
-        }
-        
-        private static void CreateGameStateMachine(IObjectResolver container)
-        {
-            container.Resolve<IStateMachineFactory>().CreateGameStateMachine().Enter<BootstrapState>();
         }
     }
 }

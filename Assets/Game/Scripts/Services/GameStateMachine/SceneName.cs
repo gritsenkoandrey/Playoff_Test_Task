@@ -2,7 +2,7 @@
 {
     public static class SceneName
     {
-        public const string Bootstrap = "Bootstrap";
-        public const string Game = "Game";
+        public const string BOOTSTRAP = "Bootstrap";
+        public const string GAME = "Game";
     }
 }
