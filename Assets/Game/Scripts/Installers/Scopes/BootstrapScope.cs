@@ -9,7 +9,7 @@ namespace Runtime.Installers.Scopes
         {
             base.Configure(builder);
 
-            builder.RegisterEntryPoint<EntryPoint>(Lifetime.Scoped);
+            builder.RegisterEntryPoint<EntryPoint>(Lifetime.Scoped).Build();
         }
     }
 }

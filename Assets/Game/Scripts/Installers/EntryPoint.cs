@@ -1,20 +1,18 @@
 ﻿using Runtime.Services.Factories.StateMachineFactory;
 using Runtime.Services.GameStateMachine.States;
-using VContainer;
 using VContainer.Unity;
 
 namespace Runtime.Installers
 {
     public sealed class EntryPoint : IInitializable
     {
-        private readonly IObjectResolver _objectResolver;
+        private readonly IStateMachineFactory _stateMachineFactory;
 
-        public EntryPoint(IObjectResolver objectResolver)
+        public EntryPoint(IStateMachineFactory stateMachineFactory)
         {
-            _objectResolver = objectResolver;
+            _stateMachineFactory = stateMachineFactory;
         }
         
-        void IInitializable.Initialize() => 
-            _objectResolver.Resolve<IStateMachineFactory>().CreateGameStateMachine().Enter<BootstrapState>();
+        void IInitializable.Initialize() => _stateMachineFactory.CreateGameStateMachine().Enter<BootstrapState>();
     }
 }
